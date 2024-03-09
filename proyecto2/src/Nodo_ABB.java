@@ -19,8 +19,6 @@ public class Nodo_ABB {
         this.hijo_izq = null;
     }
 
-
-
     public Nodo_ABB getHijo_der() {
         return hijo_der;
     }
@@ -44,11 +42,5 @@ public class Nodo_ABB {
     public void setDato(Object dato) {
         this.dato = dato;
     }
-    
-    
-    
-    
-    
-            
     
 }
