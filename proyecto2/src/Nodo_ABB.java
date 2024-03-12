@@ -11,9 +11,9 @@ public class Nodo_ABB {
     
     private Nodo_ABB hijo_der;
     private Nodo_ABB hijo_izq;
-    private Object dato;
+    private int dato;
 
-    public Nodo_ABB(Object dato) {
+    public Nodo_ABB(int dato) {
         this.dato = dato;
         this.hijo_der = null;
         this.hijo_izq = null;
@@ -35,11 +35,11 @@ public class Nodo_ABB {
         this.hijo_izq = hijo_izq;
     }
 
-    public Object getDato() {
+    public int getDato() {
         return dato;
     }
 
-    public void setDato(Object dato) {
+    public void setDato(int dato) {
         this.dato = dato;
     }
     
