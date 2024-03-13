@@ -12,11 +12,13 @@ public class Nodo_ABB {
     private Nodo_ABB hijo_der;
     private Nodo_ABB hijo_izq;
     private int dato;
+    private int altura; 
 
     public Nodo_ABB(int dato) {
         this.dato = dato;
         this.hijo_der = null;
         this.hijo_izq = null;
+        this.altura = 1; 
     }
 
     public Nodo_ABB getHijo_der() {
@@ -41,6 +43,14 @@ public class Nodo_ABB {
 
     public void setDato(int dato) {
         this.dato = dato;
+    }
+
+    public int getAltura() {
+        return altura;
+    }
+
+    public void setAltura(int altura) {
+        this.altura = altura;
     }
     
 }
