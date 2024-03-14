@@ -21,6 +21,8 @@ public class Main {
         
         bookingHotel.cargarReservaciones("C:\\Users\\58412\\Desktop\\Booking_hotel.xlsx");
         System.out.println(bookingHotel.getArbolReservaciones().toString());
+        bookingHotel.cargarClientes("C:\\Users\\58412\\Desktop\\Booking_hotel.xlsx");
+        System.out.println(bookingHotel.getHashEstado().buscar("Vlasov", "Cosmo").toString());
       
 
     }

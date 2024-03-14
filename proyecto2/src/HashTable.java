@@ -8,47 +8,48 @@
  * @author 58412
  */
 public class HashTable {
-    private ListaSimple[] table;
+    private Cliente[] table;
     private int size;
+    private final int capacity;
 
-    public HashTable(int capacity) {
-        table = new ListaSimple[capacity];
+    public HashTable() {
+        this.capacity = 300;
+        table = new Cliente[capacity];
         size = 0;
     }
 
-    public void put(Cliente huesped) {
-        int index = hash(huesped.getApellido() + huesped.getNombre());
-        if (table[index] == null) {
-            table[index] = new ListaSimple();
+    public void insertar(Cliente cliente) {
+        if (size == capacity) {
+            System.out.println("Tabla hash llena, no se puede agregar más elementos.");
+            return;
         }
-        table[index].insertarFinal(huesped);
+        int hash = hash(cliente.getApellido() + cliente.getNombre());
+        int index = hash;
+        while (table[index] != null) {
+            index = (index + 1) % capacity; // Sondaje lineal
+        }
+        table[index] = cliente;
         size++;
     }
 
-    public Cliente get(String apellido, String nombre) {
-        int index = hash(apellido + nombre);
-        ListaSimple lista = table[index];
-        if (lista != null) {
-            Nodo current = lista.getpFirst();
-            while (current != null) {
-                Cliente huesped = (Cliente) current.getData();
-                if (huesped.getApellido().equals(apellido) && huesped.getNombre().equals(nombre)) {
-                    return huesped;
-                }
-                current = current.getpNext();
+    public Cliente buscar(String apellido, String nombre) {
+        int hash = hash(apellido + nombre);
+        int index = hash;
+        while (table[index] != null) {
+            if (table[index].getApellido().equals(apellido) && table[index].getNombre().equals(nombre)) {
+                return table[index];
             }
+            index = (index + 1) % capacity; // Sondaje lineal
         }
         return null;
     }
 
     private int hash(String key) {
         int hash = 0;
-        // Suma de caracteres
         for (int i = 0; i < key.length(); i++) {
-            hash += key.charAt(i);
+            hash = (31 * hash + key.charAt(i)) % capacity;
         }
-        // Multiplicación
-        hash = 31 * hash;
-        return Math.abs(hash) % table.length;
+        return Math.abs(hash);
     }
 }
+

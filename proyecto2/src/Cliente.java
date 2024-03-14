@@ -14,14 +14,16 @@ public class Cliente {
     private String email;
     private String genero;
     private String celular;
+    private String llegada;
     private int numeroHabitacion;
 
-    public Cliente(String nombre, String apellido, String email, String genero, String celular, int numeroHabitacion) {
+    public Cliente(String nombre, String apellido, String email, String genero, String celular, String llegada, int numeroHabitacion) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
         this.genero = genero;
         this.celular = celular;
+        this.llegada = llegada;
         this.numeroHabitacion = numeroHabitacion;
     }
 
@@ -73,7 +75,24 @@ public class Cliente {
         this.celular = celular;
     }
 
+    public String getLlegada() {
+        return llegada;
+    }
+
+    public void setLlegada(String llegada) {
+        this.llegada = llegada;
+    }
+    
+    public String toString() {
+        return "Cliente{" +
+                "nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", email='" + email + '\'' +
+                ", genero='" + genero + '\'' +
+                ", celular='" + celular + '\'' +
+                ", llegada='" + llegada + '\'' +
+                ", numeroHabitacion=" + numeroHabitacion +
+                '}';
+    }
+
 }
-
-
-
