@@ -83,16 +83,22 @@ public class Cliente {
         this.llegada = llegada;
     }
     
+    @Override
     public String toString() {
-        return "Cliente{" +
-                "nombre='" + nombre + '\'' +
-                ", apellido='" + apellido + '\'' +
-                ", email='" + email + '\'' +
-                ", genero='" + genero + '\'' +
-                ", celular='" + celular + '\'' +
-                ", llegada='" + llegada + '\'' +
-                ", numeroHabitacion=" + numeroHabitacion +
-                '}';
-    }
+        return """
+            Datos del Cliente:
+            nombre: %s
+            apellido: %s
+            email: %s
+            genero: %s
+            celular: %s
+            llegada: %s
+
+            Este cliente se encuentra alojado
+            en la habitación %s.
+            """.formatted(nombre, apellido, email, genero, celular, llegada, numeroHabitacion);
+ }
+
+
 
 }

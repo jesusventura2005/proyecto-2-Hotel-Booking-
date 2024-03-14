@@ -13,16 +13,17 @@ public class Main {
      
     public static void main(String[] args) {
 
-      
-
-        
-
         BookingHotel bookingHotel = new BookingHotel();
-        
         bookingHotel.cargarReservaciones("C:\\Users\\58412\\Desktop\\Booking_hotel.xlsx");
-        System.out.println(bookingHotel.getArbolReservaciones().toString());
+        //System.out.println(bookingHotel.getArbolReservaciones().toString());
         bookingHotel.cargarClientes("C:\\Users\\58412\\Desktop\\Booking_hotel.xlsx");
-        System.out.println(bookingHotel.getHashEstado().buscar("Vlasov", "Cosmo").toString());
+        Ventana1 ventana = new Ventana1(bookingHotel);
+        ventana.setVisible(true);
+
+        
+        
+        
+        
       
 
     }

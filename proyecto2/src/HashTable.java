@@ -13,7 +13,7 @@ public class HashTable {
     private final int capacity;
 
     public HashTable() {
-        this.capacity = 300;
+        this.capacity = 450;
         table = new Cliente[capacity];
         size = 0;
     }
