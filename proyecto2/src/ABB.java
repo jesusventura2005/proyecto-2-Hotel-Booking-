@@ -25,49 +25,49 @@ public class ABB {
     }
     
     // Método para insertar un nodo en el árbol
-    public void insertar(int dato) {
+    public void insertar(Object dato) {
         raiz = insertarRecursivo(raiz, dato);
     }
 
     // Método recursivo para insertar un nodo en el árbol
-    private Nodo_ABB insertarRecursivo(Nodo_ABB nodo, int dato) {
+    private Nodo_ABB insertarRecursivo(Nodo_ABB nodo, Object dato) {
         if (nodo == null) {
             cant++;
             return new Nodo_ABB(dato);
         }
 
-        if ((float) dato < (float) nodo.getDato()) {
+        if (((Reservacion)dato).getCedula() < ((Reservacion)nodo.getDato()).getCedula()) {
             nodo.setHijo_izq(insertarRecursivo(nodo.getHijo_izq(), dato));
-        } else if ((float ) dato > (float) nodo.getDato()) {
+        } else {
             nodo.setHijo_der(insertarRecursivo(nodo.getHijo_der(), dato));
         }
         
-        actualizarAltura(nodo);
-        return nodo; 
+        // actualizarAltura(nodo);
+        return nodo;
         
          
     }
 
     // Método para buscar un nodo en el árbol
-    public boolean buscar(int dato) {
-        return buscarRecursivo(raiz, dato);
-    }
-
-    // Método recursivo para buscar un nodo en el árbol
-    private boolean buscarRecursivo(Nodo_ABB nodo, int dato) {
-        if (nodo == null) {
-            return false;
-        }
-
-        if ((float) dato == nodo.getDato()) {
-            return true;
-        } else if ( dato < nodo.getDato()) {
-            return buscarRecursivo(nodo.getHijo_izq(), dato);
-        } else {
-            return buscarRecursivo(nodo.getHijo_der(), dato);
-        }
-        
-    }
+//    public boolean buscar(int dato) {
+//        return buscarRecursivo(raiz, dato);
+//    }
+//
+//    // Método recursivo para buscar un nodo en el árbol
+//    private boolean buscarRecursivo(Nodo_ABB nodo, int dato) {
+//        if (nodo == null) {
+//            return false;
+//        }
+//
+//        if ((float) dato == nodo.getDato()) {
+//            return true;
+//        } else if ( dato < nodo.getDato()) {
+//            return buscarRecursivo(nodo.getHijo_izq(), dato);
+//        } else {
+//            return buscarRecursivo(nodo.getHijo_der(), dato);
+//        }
+//        
+//    }
 
     private int calcularAlturadeRaiz (Nodo_ABB p){  
         if (p == null){ 
@@ -173,5 +173,22 @@ public class ABB {
         return nuevaRaiz;
     }
     
+    
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Árbol Binario de Búsqueda:\n");
+        sb.append(toStringRecursivo(raiz));
+        return sb.toString();
+    }
+
+    private String toStringRecursivo(Nodo_ABB nodo) {
+        StringBuilder sb = new StringBuilder();
+        if (nodo != null) {
+            sb.append(toStringRecursivo(nodo.getHijo_izq()));
+            sb.append(nodo.getDato()).append(", ");
+            sb.append(toStringRecursivo(nodo.getHijo_der()));
+        }
+        return sb.toString();
+    }
     
 }

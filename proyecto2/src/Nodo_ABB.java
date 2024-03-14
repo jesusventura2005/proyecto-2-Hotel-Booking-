@@ -11,10 +11,10 @@ public class Nodo_ABB {
     
     private Nodo_ABB hijo_der;
     private Nodo_ABB hijo_izq;
-    private int dato;
+    private Object dato;
     private int altura; 
 
-    public Nodo_ABB(int dato) {
+    public Nodo_ABB(Object dato) {
         this.dato = dato;
         this.hijo_der = null;
         this.hijo_izq = null;
@@ -37,7 +37,7 @@ public class Nodo_ABB {
         this.hijo_izq = hijo_izq;
     }
 
-    public int getDato() {
+    public Object getDato() {
         return dato;
     }
 

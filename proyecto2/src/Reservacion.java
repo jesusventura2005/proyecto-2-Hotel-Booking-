@@ -9,30 +9,98 @@
  */
 public class Reservacion {
 
-    private String cedula;
-    private String nombreCliente;
-    private String fechaLlegada;
-    private String fechaSalida;
-    private int numeroHabitacion;
+    private int cedula;
+    private String primerNombre;
+    private String segundoNombre;
+    private String email;
+    private String genero;
+    private String habitacion;
+    private String celular;
+    private String llegada;
+    private String salida;
 
-    public Reservacion(String cedula, String nombreCliente, String fechaLlegada, String fechaSalida, int numeroHabitacion) {
+    public Reservacion(int cedula, String primerNombre, String segundoNombre, String email, String genero, String habitacion, String celular, String llegada, String salida) {
         this.cedula = cedula;
-        this.nombreCliente = nombreCliente;
-        this.fechaLlegada = fechaLlegada;
-        this.fechaSalida = fechaSalida;
-        this.numeroHabitacion = numeroHabitacion;
+        this.primerNombre = primerNombre;
+        this.segundoNombre = segundoNombre;
+        this.email = email;
+        this.genero = genero;
+        this.habitacion = habitacion;
+        this.celular = celular;
+        this.llegada = llegada;
+        this.salida = salida;
     }
 
-    // Getters y setters
-    
-    // Método de comparación personalizado para comparar las cédulas
-    public boolean cedulaMenorQue(String otraCedula) {
-        // Eliminar los puntos de la cédula para comparar solo los números
-        String cedulaSinPuntos = this.cedula.replace(".", "");
-        otraCedula = otraCedula.replace(".", "");
+    public int getCedula() {
+        return cedula;
+    }
 
-        // Comparar las cédulas como enteros
-        return Long.parseLong(cedulaSinPuntos) < Long.parseLong(otraCedula);
+    public void setCedula(int cedula) {
+        this.cedula = cedula;
+    }
+
+    public String getPrimerNombre() {
+        return primerNombre;
+    }
+
+    public void setPrimerNombre(String primerNombre) {
+        this.primerNombre = primerNombre;
+    }
+
+    public String getSegundoNombre() {
+        return segundoNombre;
+    }
+
+    public void setSegundoNombre(String segundoNombre) {
+        this.segundoNombre = segundoNombre;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+
+    public String getHabitacion() {
+        return habitacion;
+    }
+
+    public void setHabitacion(String habitacion) {
+        this.habitacion = habitacion;
+    }
+
+    public String getCelular() {
+        return celular;
+    }
+
+    public void setCelular(String celular) {
+        this.celular = celular;
+    }
+
+    public String getLlegada() {
+        return llegada;
+    }
+
+    public void setLlegada(String llegada) {
+        this.llegada = llegada;
+    }
+
+    public String getSalida() {
+        return salida;
+    }
+
+    public void setSalida(String salida) {
+        this.salida = salida;
     }
 
 }

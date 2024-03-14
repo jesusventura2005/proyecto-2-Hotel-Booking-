@@ -17,9 +17,10 @@ public class Main {
 
         
 
-        BookingHotel obj = new BookingHotel();
+        BookingHotel bookingHotel = new BookingHotel();
         
-        obj.Buscar("Feveryear","reservas");
+        bookingHotel.cargarReservaciones("C:\\Users\\58412\\Desktop\\Booking_hotel.xlsx");
+        System.out.println(bookingHotel.getArbolReservaciones().toString());
       
 
     }
