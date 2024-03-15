@@ -102,5 +102,20 @@ public class Reservacion {
     public void setSalida(String salida) {
         this.salida = salida;
     }
+    
+    public String toStringReservacion() {
+        return """
+            Datos de la Reservación:
+            cedula: %s
+            primerNombre: %s
+            segundoNombre: %s
+            email: %s
+            genero: %s
+            habitacion: %s
+            celular: %s
+            llegada: %s
+            salida: %s
+            """.formatted(cedula, primerNombre, segundoNombre, email, genero, habitacion, celular, llegada, salida);
+    }
 
 }
