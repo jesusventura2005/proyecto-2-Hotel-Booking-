@@ -87,12 +87,12 @@ public class Cliente {
     public String toString() {
         return """
             Datos del Cliente:
-            nombre: %s
-            apellido: %s
-            email: %s
-            genero: %s
-            celular: %s
-            llegada: %s
+            Nombre: %s
+            Apellido: %s
+            Email: %s
+            Genero: %s
+            Celular: %s
+            Llegada: %s
 
             Este cliente se encuentra alojado
             en la habitación %s.

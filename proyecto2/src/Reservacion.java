@@ -103,18 +103,18 @@ public class Reservacion {
         this.salida = salida;
     }
     
-    public String toStringReservacion() {
+    public String toString() {
         return """
             Datos de la Reservación:
-            cedula: %s
-            primerNombre: %s
-            segundoNombre: %s
-            email: %s
-            genero: %s
-            habitacion: %s
-            celular: %s
-            llegada: %s
-            salida: %s
+            Cedula: %s
+            Primer Nombre: %s
+            Segundo Nombre: %s
+            Email: %s
+            Genero: %s
+            Habitacion: %s
+            Celular: %s
+            Llegada: %s
+            Salida: %s
             """.formatted(cedula, primerNombre, segundoNombre, email, genero, habitacion, celular, llegada, salida);
     }
 

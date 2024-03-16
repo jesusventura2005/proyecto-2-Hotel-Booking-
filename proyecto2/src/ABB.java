@@ -49,55 +49,53 @@ public class ABB {
 
     }
 
-    // Método para buscar un nodo en el árbol
-//    public boolean buscar(int dato) {
-//        return buscarRecursivo(raiz, dato);
-//    }
-//
-//    // Método recursivo para buscar un nodo en el árbol
-//    private boolean buscarRecursivo(Nodo_ABB nodo, int dato) {
-//        if (nodo == null) {
-//            return false;
-//        }
-//
-//        if ((float) dato == nodo.getDato()) {
-//            return true;
-//        } else if ( dato < nodo.getDato()) {
-//            return buscarRecursivo(nodo.getHijo_izq(), dato);
-//        } else {
-//            return buscarRecursivo(nodo.getHijo_der(), dato);
-//        }
-//        
-//    }
-
-    private int calcularAlturadeRaiz (Nodo_ABB p){  
-        if (p == null){ 
-            // mensaje de advetencia
-        }else{ 
-            int alturaRaiz = 1; 
-            int alturaHijoIzq = calcularAlturadeRaiz(p.getHijo_izq()); 
-            int alturaHijoDer = calcularAlturadeRaiz(p.getHijo_der()); 
-            if (alturaHijoIzq > alturaHijoDer) { 
-                altura = alturaHijoIzq + alturaRaiz; 
-            }else { 
-                altura = alturaHijoDer + alturaRaiz; 
-            }
-        }
-       return altura; 
+    public Reservacion buscar(int cedula) {
+        return buscarRecursivo(raiz, cedula);
     }
 
-    
-    
-    // Otros métodos como eliminar, calcular altura, etc.
+    private Reservacion buscarRecursivo(Nodo_ABB nodo, int cedula) {
+        if (nodo == null) {
+            return null; // Si el nodo es nulo, la cédula no está presente en el árbol
+        }
+        // Comparamos la cédula del nodo actual con la cédula buscada
+        int cedulaNodo = ((Reservacion) nodo.getDato()).getCedula();
+        if (cedula == cedulaNodo) {
+            return (Reservacion) nodo.getDato(); // Se encontró la reservación
+        } else if (cedula < cedulaNodo) {
+            // Si la cédula buscada es menor, buscamos en el subárbol izquierdo
+            return buscarRecursivo(nodo.getHijo_izq(), cedula);
+        } else {
+            // Si la cédula buscada es mayor, buscamos en el subárbol derecho
+            return buscarRecursivo(nodo.getHijo_der(), cedula);
+        }
+    }
 
-    public int equilibrio(Nodo_ABB nodo){ 
-        if (nodo == null) { 
-            return 0; 
-        }else{ 
-           return GetAltura(nodo.getHijo_der()) - GetAltura(nodo.getHijo_izq()); 
+
+    private int calcularAlturadeRaiz (Nodo_ABB p){
+        if (p == null){
+            // mensaje de advertencia
+        }else{
+            int alturaRaiz = 1;
+            int alturaHijoIzq = calcularAlturadeRaiz(p.getHijo_izq());
+            int alturaHijoDer = calcularAlturadeRaiz(p.getHijo_der());
+            if (alturaHijoIzq > alturaHijoDer) {
+                altura = alturaHijoIzq + alturaRaiz;
+            }else {
+                altura = alturaHijoDer + alturaRaiz;
+            }
+        }
+       return altura;
+    }
+
+
+    public int equilibrio(Nodo_ABB nodo){
+        if (nodo == null) {
+            return 0;
+        }else{
+           return GetAltura(nodo.getHijo_der()) - GetAltura(nodo.getHijo_izq());
             
         }
-    } 
+    }
         
     public Nodo_ABB getRaiz() {
         return raiz;
@@ -108,53 +106,49 @@ public class ABB {
     }
     
     public int max(int altura_izq ,int altura_der){
-        if (altura_izq > altura_der){ 
-            return altura_izq; 
-        }else{ 
-            return altura_der; 
+        if (altura_izq > altura_der){
+            return altura_izq;
+        }else{
+            return altura_der;
         }
     }
     
-    public Nodo_ABB actualizarAltura(Nodo_ABB nodo){ 
+    public Nodo_ABB actualizarAltura(Nodo_ABB nodo){
 
-    nodo.setAltura(max(GetAltura(nodo.getHijo_izq()), GetAltura(nodo.getHijo_der()) + 1)); 
+    nodo.setAltura(max(GetAltura(nodo.getHijo_izq()), GetAltura(nodo.getHijo_der()) + 1));
             
-   int e = equilibrio(nodo); 
+    int e = equilibrio(nodo);
    
-   if (e > 1 && equilibrio(nodo.getHijo_der()) >= 0){   
-            return Rotar_izq(nodo); 
+    if (e > 1 && equilibrio(nodo.getHijo_der()) >= 0){
+            return Rotar_izq(nodo);
     }
    
     if (e < -1 && equilibrio(nodo.getHijo_izq()) <= 0) {
             return Rotar_der(nodo);
     }
     
-    if (e < -1 && equilibrio(nodo.getHijo_der()) > 0){ 
-//         nodo.setHijo_der(Rotar_der(nodo.getHijo_der()));
-//         return Rotar_izq(nodo);
-           return RDI(nodo);  
+    if (e < -1 && equilibrio(nodo.getHijo_der()) > 0){
+        return RDI(nodo);
     }
     
-    if (e > 1 && equilibrio(nodo.getHijo_der()) < 0){ 
-//        nodo.setHijo_izq(Rotar_izq(nodo.getHijo_izq()));
-//        return Rotar_der(nodo); 
-          return RDD(nodo); 
+    if (e > 1 && equilibrio(nodo.getHijo_der()) < 0){
+        return RDD(nodo);
         }
-    return nodo; 
+    return nodo;
     } 
     
-    public Nodo_ABB Rotar_izq (Nodo_ABB nodo){ 
+    public Nodo_ABB Rotar_izq (Nodo_ABB nodo){
     Nodo_ABB nuevaRaiz = nodo.getHijo_der();
     Nodo_ABB temp = nuevaRaiz.getHijo_izq();
- 
+
         // Se realiza la rotacion
     nuevaRaiz.setHijo_izq(nodo);
     nodo.setHijo_der(temp);
- 
+
         // Actualiza alturas
-    nodo.setAltura(max(GetAltura(nodo.getHijo_izq()), GetAltura(nodo.getHijo_der()) + 1)); 
+    nodo.setAltura(max(GetAltura(nodo.getHijo_izq()), GetAltura(nodo.getHijo_der()) + 1));
     nuevaRaiz.setAltura(max(GetAltura(nuevaRaiz.getHijo_izq()), GetAltura(nuevaRaiz.getHijo_der())) + 1);
- 
+
     return nuevaRaiz;
     }
  
@@ -162,11 +156,11 @@ public class ABB {
     private Nodo_ABB Rotar_der(Nodo_ABB nodo) {
         Nodo_ABB nuevaRaiz = nodo.getHijo_izq();
         Nodo_ABB temp = nuevaRaiz.getHijo_der();
- 
+
         // Se realiza la rotacion
         nuevaRaiz.setHijo_der(nodo);
         nodo.setHijo_izq(temp);
- 
+
         // Actualiza alturas
         nodo.setAltura(max(GetAltura(nodo.getHijo_izq()), GetAltura(nodo.getHijo_der()) + 1));
         nuevaRaiz.setAltura(max(GetAltura(nuevaRaiz.getHijo_izq()), GetAltura(nuevaRaiz.getHijo_der()) + 1));
@@ -174,9 +168,9 @@ public class ABB {
         return nuevaRaiz;
     }
     
-    private Nodo_ABB RDD (Nodo_ABB nodo){ 
-        Nodo_ABB NuevaRaizC = nodo.getHijo_der(); 
-        Nodo_ABB temp = NuevaRaizC.getHijo_izq(); 
+    private Nodo_ABB RDD (Nodo_ABB nodo){
+        Nodo_ABB NuevaRaizC = nodo.getHijo_der();
+        Nodo_ABB temp = NuevaRaizC.getHijo_izq();
         
         nodo.setHijo_der(temp);
         temp.setHijo_der(NuevaRaizC);
@@ -184,15 +178,15 @@ public class ABB {
         
         nodo.setAltura(max(GetAltura(nodo.getHijo_izq()), GetAltura(nodo.getHijo_der()) + 1));
         NuevaRaizC.setAltura(max(GetAltura(NuevaRaizC.getHijo_izq()), GetAltura(NuevaRaizC.getHijo_der()) + 1));
-        temp.setAltura(max(GetAltura(temp.getHijo_izq()), GetAltura(temp.getHijo_der())+ 1 )); 
+        temp.setAltura(max(GetAltura(temp.getHijo_izq()), GetAltura(temp.getHijo_der())+ 1 ));
          
-        return Rotar_izq(nodo); 
+        return Rotar_izq(nodo);
       
     }
     
-    private Nodo_ABB RDI (Nodo_ABB nodo){ 
-        Nodo_ABB NuevaRaizC = nodo.getHijo_izq(); 
-        Nodo_ABB temp = NuevaRaizC.getHijo_der(); 
+    private Nodo_ABB RDI (Nodo_ABB nodo){
+        Nodo_ABB NuevaRaizC = nodo.getHijo_izq();
+        Nodo_ABB temp = NuevaRaizC.getHijo_der();
         
         nodo.setHijo_izq(temp);
         temp.setHijo_izq(NuevaRaizC);
@@ -200,9 +194,9 @@ public class ABB {
         
         nodo.setAltura(max(GetAltura(nodo.getHijo_izq()), GetAltura(nodo.getHijo_der()) + 1));
         NuevaRaizC.setAltura(max(GetAltura(NuevaRaizC.getHijo_izq()), GetAltura(NuevaRaizC.getHijo_der()) + 1));
-        temp.setAltura(max(GetAltura(temp.getHijo_izq()), GetAltura(temp.getHijo_der())+ 1 )); 
+        temp.setAltura(max(GetAltura(temp.getHijo_izq()), GetAltura(temp.getHijo_der())+ 1 ));
          
-        return Rotar_der(nodo); 
+        return Rotar_der(nodo);
       
     }
     
@@ -218,18 +212,18 @@ public class ABB {
         StringBuilder sb = new StringBuilder();
         if (nodo != null) {
             sb.append(toStringRecursivo(nodo.getHijo_izq()));
-            sb.append(((Reservacion)nodo.getDato()).toStringReservacion()).append(", ");
+            sb.append(((Reservacion)nodo.getDato()).toString()).append(", ");
             sb.append(toStringRecursivo(nodo.getHijo_der()));
         }
         return sb.toString();
     }
     
     
-    public int GetAltura (Nodo_ABB nodo){ 
-        if (nodo == null){ 
-            return 0;  
+    public int GetAltura (Nodo_ABB nodo){
+        if (nodo == null){
+            return 0;
         }else{ 
-            return nodo.getAltura(); 
+            return nodo.getAltura();
+        }
     }
-    } 
 }

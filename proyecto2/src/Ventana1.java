@@ -44,7 +44,7 @@ public class Ventana1 extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         cedula = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        datosReservacion = new javax.swing.JTextArea();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
@@ -98,6 +98,11 @@ public class Ventana1 extends javax.swing.JFrame {
 
         buscarReservacion.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         buscarReservacion.setText("Buscar Reservación");
+        buscarReservacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarReservacionActionPerformed(evt);
+            }
+        });
         jPanel3.add(buscarReservacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 200, 50));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -106,10 +111,10 @@ public class Ventana1 extends javax.swing.JFrame {
         jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 200, 30));
         jPanel3.add(cedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 200, 40));
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
+        datosReservacion.setEditable(false);
+        datosReservacion.setColumns(20);
+        datosReservacion.setRows(5);
+        jScrollPane2.setViewportView(datosReservacion);
 
         jPanel3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 50, 310, 310));
 
@@ -159,6 +164,20 @@ public class Ventana1 extends javax.swing.JFrame {
         apellido.setText("");
     }//GEN-LAST:event_buscarClienteActionPerformed
 
+    private void buscarReservacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarReservacionActionPerformed
+        // TODO add your handling code here:
+        try {
+            String texto = cedula.getText();
+            int cedulaValor = Integer.parseInt(texto);
+            String info = bookingHotel.getArbolReservaciones().buscar(cedulaValor).toString();
+            datosReservacion.setText(info);
+            cedula.setText("");
+        } catch (NumberFormatException e) {
+            datosReservacion.setText("Por favor, ingrese un valor válido.");
+        }
+
+    }//GEN-LAST:event_buscarReservacionActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -201,6 +220,7 @@ public class Ventana1 extends javax.swing.JFrame {
     private javax.swing.JButton buscarReservacion;
     private javax.swing.JTextField cedula;
     private javax.swing.JTextArea datosCliente;
+    private javax.swing.JTextArea datosReservacion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -213,7 +233,6 @@ public class Ventana1 extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField nombre;
     // End of variables declaration//GEN-END:variables
 }
