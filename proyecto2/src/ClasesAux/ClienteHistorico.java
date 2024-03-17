@@ -1,4 +1,4 @@
-package Proyecto2;
+package ClasesAux;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -7,26 +7,33 @@ package Proyecto2;
 
 /**
  *
- * @author jesus
+ * @author 58412
  */
-public class Cliente {
-    
-    private String nombre;
-    private String apellido;
-    private String email;
-    private String genero;
-    private String celular;
-    private String llegada;
-    private int numeroHabitacion;
+public class ClienteHistorico {
+    int cedula;
+    String nombre;
+    String apellido;
+    String email;
+    String genero;
+    String llegada;
+    int numeroHabitacion;
 
-    public Cliente(String nombre, String apellido, String email, String genero, String celular, String llegada, int numeroHabitacion) {
+    public ClienteHistorico(int cedula, String nombre, String apellido, String email, String genero, String llegada, int numeroHabitacion) {
+        this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
         this.genero = genero;
-        this.celular = celular;
         this.llegada = llegada;
         this.numeroHabitacion = numeroHabitacion;
+    }
+
+    public int getCedula() {
+        return cedula;
+    }
+
+    public void setCedula(int cedula) {
+        this.cedula = cedula;
     }
 
     public String getNombre() {
@@ -45,14 +52,6 @@ public class Cliente {
         this.apellido = apellido;
     }
 
-    public int getNumeroHabitacion() {
-        return numeroHabitacion;
-    }
-
-    public void setNumeroHabitacion(int numeroHabitacion) {
-        this.numeroHabitacion = numeroHabitacion;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -69,14 +68,6 @@ public class Cliente {
         this.genero = genero;
     }
 
-    public String getCelular() {
-        return celular;
-    }
-
-    public void setCelular(String celular) {
-        this.celular = celular;
-    }
-
     public String getLlegada() {
         return llegada;
     }
@@ -84,23 +75,38 @@ public class Cliente {
     public void setLlegada(String llegada) {
         this.llegada = llegada;
     }
+
+    public int getNumeroHabitacion() {
+        return numeroHabitacion;
+    }
+
+    public void setNumeroHabitacion(int numeroHabitacion) {
+        this.numeroHabitacion = numeroHabitacion;
+    }
     
     @Override
     public String toString() {
-        return """
+        if (cedula == -1){
+            return """
             Datos del Cliente:
+            Cédula: Cédula no encontrada
             Nombre: %s
             Apellido: %s
             Email: %s
             Genero: %s
-            Celular: %s
             Llegada: %s
-
-            Este cliente se encuentra alojado
-            en la habitación %s.
-            """.formatted(nombre, apellido, email, genero, celular, llegada, numeroHabitacion);
+            """.formatted(nombre, apellido, email, genero, llegada, numeroHabitacion);
+        } else {
+            return """
+            Datos del Cliente:
+            Cédula: %s
+            Nombre: %s
+            Apellido: %s
+            Email: %s
+            Genero: %s
+            Llegada: %s
+            """.formatted(cedula, nombre, apellido, email, genero, llegada, numeroHabitacion);
+        }
     }
-
-
-
+    
 }

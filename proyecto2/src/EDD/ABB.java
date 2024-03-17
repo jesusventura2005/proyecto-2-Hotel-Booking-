@@ -1,4 +1,7 @@
-package Proyecto2;
+package EDD;
+
+import ClasesAux.Habitacion;
+import ClasesAux.Reservacion;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license

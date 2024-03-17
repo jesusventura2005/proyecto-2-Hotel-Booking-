@@ -1,4 +1,11 @@
-package Proyecto2;
+package Ventanas;
+
+import ClasesAux.BookingHotel;
+import ClasesAux.Cliente;
+import ClasesAux.ClienteHistorico;
+import ClasesAux.Habitacion;
+import EDD.NodoListaSimple;
+import ClasesAux.Reservacion;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -300,14 +307,12 @@ public class Ventana1 extends javax.swing.JFrame {
             String texto = cedulaReservacion.getText().trim();
             int cedulaReservacionC = Integer.parseInt(texto);
             String info;
-            Reservacion reserva;
-            Cliente cliente;
             Habitacion habitacion;
             int habitacionAsignada = -1;
             if (bookingHotel.getArbolReservaciones().buscarReservacion(cedulaReservacionC) == null) {
                 info = "La reservación no existe.";
             } else {
-                reserva = bookingHotel.getArbolReservaciones().buscarReservacion(cedulaReservacionC);
+                Reservacion reserva = bookingHotel.getArbolReservaciones().buscarReservacion(cedulaReservacionC);
                 NodoListaSimple aux = bookingHotel.getHabitacionesDisponibles().getpFirst();
                 while (aux != null) {
                     habitacion = bookingHotel.getArbolHabitaciones().buscarHabitacion((int)aux.getData());
@@ -321,7 +326,7 @@ public class Ventana1 extends javax.swing.JFrame {
                 if (habitacionAsignada == -1) {
                     info = "No hay habitaciones disponibles en este momento.";
                 } else {
-                    cliente = new Cliente(reserva.getPrimerNombre(), reserva.getSegundoNombre(), reserva.getEmail(), reserva.getGenero(), reserva.getCelular(), reserva.getLlegada(), habitacionAsignada);
+                    Cliente cliente = new Cliente(reserva.getPrimerNombre(), reserva.getSegundoNombre(), reserva.getEmail(), reserva.getGenero(), reserva.getCelular(), reserva.getLlegada(), habitacionAsignada);
                     bookingHotel.getHashEstado().insertar(cliente);
                     bookingHotel.getArbolReservaciones().eliminarReservacion(reserva.getCedula());
                     info = "Se le ha asignado la habitación " + habitacionAsignada + ".\nSus datos a continuación:\n\n" + cliente.toString();

@@ -1,10 +1,14 @@
-package Proyecto2;
+package ClasesAux;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
+import EDD.NodoListaSimple;
+import EDD.ABB;
+import EDD.ListaSimple;
+import EDD.HashTable;
 import java.io.FileInputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -25,12 +29,14 @@ public class BookingHotel {
     private HashTable hashEstado;
     private ABB arbolHabitaciones;
     private ListaSimple habitacionesDisponibles;
+    private boolean error;
 
     public BookingHotel() {
         arbolReservaciones = new ABB();
         hashEstado = new HashTable();
         arbolHabitaciones = new ABB();
         habitacionesDisponibles = new ListaSimple();
+        error = false;
     }
 
     public ABB getArbolReservaciones() {
@@ -64,11 +70,14 @@ public class BookingHotel {
     public void setHabitacionesDisponibles(ListaSimple habitacionesDisponibles) {
         this.habitacionesDisponibles = habitacionesDisponibles;
     }
-    
-    
-    
-    
-    
+
+    public boolean isError() {
+        return error;
+    }
+
+    public void setError(boolean error) {
+        this.error = error;
+    }
     
     public void cargarReservaciones(String rutaExcel) {
         Workbook wb = null;
@@ -101,7 +110,6 @@ public class BookingHotel {
             }
         } catch (Exception e) {
             System.out.println("Error al cargar las reservaciones");
-            e.printStackTrace();
         } finally {
             try {
                 if (wb != null) {
@@ -109,7 +117,6 @@ public class BookingHotel {
                 }
             } catch (Exception ex) {
                 System.out.println("Error al cerrar el Workbook");
-                ex.printStackTrace();
             }
         }
     }
@@ -150,8 +157,7 @@ public class BookingHotel {
             encontrarHabitacionesDisponibles(habitacionesOcupadas);
             
         } catch (Exception e) {
-            System.out.println("Error al cargar los clientes");
-            e.printStackTrace();
+            error = true;
         } finally {
             try {
                 if (wb != null) {
@@ -159,7 +165,6 @@ public class BookingHotel {
                 }
             } catch (Exception ex) {
                 System.out.println("Error al cerrar el Workbook");
-                ex.printStackTrace();
             }
         }
     }
@@ -230,7 +235,6 @@ public class BookingHotel {
 
         } catch (Exception e) {
             System.out.println("Error al cargar el histórico y las habitaciones");
-            e.printStackTrace();
         } finally {
             try {
                 if (wb != null) {
@@ -238,7 +242,6 @@ public class BookingHotel {
                 }
             } catch (Exception ex) {
                 System.out.println("Error al cerrar el Workbook");
-                ex.printStackTrace();
             }
         }
     }
@@ -254,43 +257,6 @@ public class BookingHotel {
         return new ClienteHistorico(cedula, primerNombre, apellido, email, genero, llegada, numeroHabitacion);
     }
 
-
-
-//    public void Buscar(String cliente, String sheetName) {
-//        Object data = null;
-//        Workbook wb = null;
-//        try {
-//            FileInputStream fis = new FileInputStream("C:\\Users\\58412\\Desktop\\Booking_hotel.xlsx");
-//            wb = WorkbookFactory.create(fis);
-//            Sheet s = wb.getSheet(sheetName);
-//            for (Row row : s) {
-//                Cell cell = row.getCell(2);
-//                if (cell != null) {
-//                    if (cell.getCellType() == CellType.NUMERIC) {
-//                        data = NumberToTextConverter.toText(cell.getNumericCellValue());
-//                    } else {
-//                        data = cell.getStringCellValue();
-//                    }
-//                    if (cliente.equals(data)) {
-//                        System.out.println("Cliente encontrado en la fila: " + (row.getRowNum() + 1));
-//                        break;
-//                    }
-//                }
-//            }
-//        } catch (Exception e) {
-//            System.out.println("Error al buscar el cliente");
-//            e.printStackTrace();
-//        } finally {
-//            try {
-//                if (wb != null) {
-//                    wb.close();
-//                }
-//            } catch (Exception ex) {
-//                System.out.println("Error al cerrar el Workbook");
-//                ex.printStackTrace();
-//            }
-//        }
-//    }
 
     public void Buscar(String cliente, String sheetName) {
         Workbook wb = null;
@@ -310,7 +276,6 @@ public class BookingHotel {
             }
         } catch (Exception e) {
             System.out.println("Error al buscar el cliente");
-            e.printStackTrace();
         } finally {
             try {
                 if (wb != null) {
@@ -318,7 +283,6 @@ public class BookingHotel {
                 }
             } catch (Exception ex) {
                 System.out.println("Error al cerrar el Workbook");
-                ex.printStackTrace();
             }
         }
     }

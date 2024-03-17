@@ -1,4 +1,6 @@
-package Proyecto2;
+package EDD;
+
+import ClasesAux.ClienteHistorico;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license

@@ -2,12 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Proyecto2;
+package Ventanas;
 
+import ClasesAux.BookingHotel;
 import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,7 +22,9 @@ public class Ventana2 extends javax.swing.JFrame {
      */
     public Ventana2() {
         initComponents();
-        this.setLocationRelativeTo(null);
+        setTitle("Hotel Booking");
+        setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     /**
@@ -36,42 +40,49 @@ public class Ventana2 extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         archivo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setText("siguiente");
+        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jButton1.setText("Continuar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 213, -1, 30));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 350, 200, 50));
 
-        jLabel1.setText("Bienvenido al booking hotel ");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 170, -1));
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Bienvenido al Sistema de Administración del Hotel");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 560, 50));
 
-        jLabel2.setText("Por favor, ingrese su path hacia el archivo excel a cargar");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, -1, -1));
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Para comenzar, ingrese la ruta de acceso");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 340, 30));
 
-        archivo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                archivoActionPerformed(evt);
-            }
-        });
-        jPanel1.add(archivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 340, 30));
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("del archivo Excel con los datos necesarios");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 180, 340, 30));
+
+        archivo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jPanel1.add(archivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, 400, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 690, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
         );
 
         pack();
@@ -80,37 +91,26 @@ public class Ventana2 extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         BookingHotel bookingHotel = new BookingHotel();
-        String ArchCargado = archivo.getText().trim();
-//        try{ 
-//        Path camino = Paths.get(ArchCargado);
-//        assertFalse(Files.exists(camino));
-////            Path camino = Paths.get(ArchCargado);
-////            assertFalse(Files.exists(camino));
-//        }catch (UnsupportedOperationException | NullPointerException ex) { 
-//            archivo.setText(""" 
-//                          Carácter no válido.
-//                          """);         
-//            return; 
-//        }
-        bookingHotel.cargarClientes(ArchCargado);
-        bookingHotel.cargarReservaciones(ArchCargado);
-        bookingHotel.cargarHabitaciones(ArchCargado);
+        String archCargado = archivo.getText().trim();
+        if (archCargado.length() >= 2) {
+            archCargado = archCargado.substring(1, archCargado.length() - 1);
+        } else {
+            archCargado = "";
+        }
+        
+        bookingHotel.cargarClientes(archCargado);
+        if (bookingHotel.isError()) {
+            archivo.setText("");
+            JOptionPane.showMessageDialog(null, "Por favor, ingrese una ruta de acceso válida.", "Error", JOptionPane.ERROR_MESSAGE);
+            bookingHotel.setError(false);
+            return;
+        }
+        bookingHotel.cargarReservaciones(archCargado);
+        bookingHotel.cargarHabitaciones(archCargado);
         Ventana1 ventana = new Ventana1(bookingHotel);
-        ventana.setVisible(true);
         this.setVisible(false);
-        //        if (!ArchCargado.matches("[C:]+\\[a-zA-Z]+\\[a-zA-Z]+\\[a-zA-Z]+\\[a-zA-Z_.]")){
-//            ArchCargado = """ 
-//                          Carácter no válido.
-//                          """;
-//            archivo.setText(ArchCargado);
-//            return; 
-//        } 
-//C:\\Users\\drali\\Desktop\\Booking_hotel.xlsx
+        ventana.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void archivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_archivoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_archivoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -152,6 +152,7 @@ public class Ventana2 extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 
