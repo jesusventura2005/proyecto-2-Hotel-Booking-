@@ -128,7 +128,8 @@ public class ABB {
             nodo.setHijo_izq(eliminarRecursivo(nodo.getHijo_izq(), dato)); 
 
         }else if(((Reservacion)dato).getCedula() > ((Reservacion)nodo.getDato()).getCedula()){
-            nodo.setHijo_der(eliminarRecursivo(nodo.getHijo_der(), dato)); 
+            nodo.setHijo_der(eliminarRecursivo(nodo.getHijo_der(), dato));
+            
         }else{ 
 
             if ((nodo.getHijo_izq() == null) || (nodo.getHijo_der() == null)){ 
@@ -146,19 +147,19 @@ public class ABB {
                     }
             }else{ 
 
-                temp = getNodoValorMaximo(nodo.getHijo_der());
+                temp = getNodoValorMaximo(nodo.getHijo_izq());
 
                 nodo.setDato((Reservacion)temp.getDato());
 
-                nodo.setHijo_der(eliminarRecursivo(nodo.getHijo_der(), ((Reservacion)temp.getDato()).getCedula()));
+                nodo.setHijo_izq(eliminarRecursivo(nodo.getHijo_izq(), ((Reservacion)temp.getDato())));
 
             }
         }
 
         if (nodo == null){
-            nodo = actualizarAlturaReservacion(nodo, dato);
             return nodo; 
-        } 
+        }
+        nodo = actualizarAlturaReservacion(nodo, dato);
         return nodo; 
     }
 
@@ -226,8 +227,8 @@ public class ABB {
     
     if (e > 1 && equilibrio(nodo.getHijo_der()) < 0){
         nodo.setHijo_der(Rotar_der(nodo.getHijo_der()));
-        Rotar_izq(nodo); 
-        return nodo;
+        return Rotar_izq(nodo); 
+        
         
         }
     

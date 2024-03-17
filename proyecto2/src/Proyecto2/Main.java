@@ -16,9 +16,9 @@ public class Main {
     public static void main(String[] args) {
 
         BookingHotel bookingHotel = new BookingHotel();
-        bookingHotel.cargarClientes("C:\\Users\\58412\\Desktop\\Booking_hotel.xlsx");
-        bookingHotel.cargarReservaciones("C:\\Users\\58412\\Desktop\\Booking_hotel.xlsx");
-        bookingHotel.cargarHabitaciones("C:\\Users\\58412\\Desktop\\Booking_hotel.xlsx");
+        bookingHotel.cargarClientes("C:\\Users\\drali\\Desktop\\Booking_hotel.xlsx");
+        bookingHotel.cargarReservaciones("C:\\Users\\drali\\Desktop\\Booking_hotel.xlsx");
+        bookingHotel.cargarHabitaciones("C:\\Users\\drali\\Desktop\\Booking_hotel.xlsx");
         Ventana1 ventana = new Ventana1(bookingHotel);
         ventana.setVisible(true);
 
