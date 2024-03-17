@@ -14,13 +14,14 @@ public class Main {
     
      
     public static void main(String[] args) {
-
-        BookingHotel bookingHotel = new BookingHotel();
-        bookingHotel.cargarClientes("C:\\Users\\drali\\Desktop\\Booking_hotel.xlsx");
-        bookingHotel.cargarReservaciones("C:\\Users\\drali\\Desktop\\Booking_hotel.xlsx");
-        bookingHotel.cargarHabitaciones("C:\\Users\\drali\\Desktop\\Booking_hotel.xlsx");
-        Ventana1 ventana = new Ventana1(bookingHotel);
+        Ventana2 ventana = new Ventana2();
         ventana.setVisible(true);
+//        BookingHotel bookingHotel = new BookingHotel();
+//        bookingHotel.cargarClientes("C:\\Users\\drali\\Desktop\\Booking_hotel.xlsx");
+//        bookingHotel.cargarReservaciones("C:\\Users\\drali\\Desktop\\Booking_hotel.xlsx");
+//        bookingHotel.cargarHabitaciones("C:\\Users\\drali\\Desktop\\Booking_hotel.xlsx");
+////        Ventana1 ventana = new Ventana1(bookingHotel);
+////        ventana.setVisible(true);
 
         
         
