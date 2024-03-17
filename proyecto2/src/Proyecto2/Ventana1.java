@@ -1,3 +1,5 @@
+package Proyecto2;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -46,7 +48,17 @@ public class Ventana1 extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         datosReservacion = new javax.swing.JTextArea();
         jPanel4 = new javax.swing.JPanel();
+        mostrarClientes = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        numeroHabitacion = new javax.swing.JTextField();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        datosClientesHistoricos = new javax.swing.JTextArea();
         jPanel5 = new javax.swing.JPanel();
+        cedulaReservacion = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        checkIn = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        datosCheckIn = new javax.swing.JTextArea();
         jPanel6 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -109,10 +121,13 @@ public class Ventana1 extends javax.swing.JFrame {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Cédula de Identidad");
         jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 200, 30));
+
+        cedula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jPanel3.add(cedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 200, 40));
 
         datosReservacion.setEditable(false);
         datosReservacion.setColumns(20);
+        datosReservacion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         datosReservacion.setRows(5);
         jScrollPane2.setViewportView(datosReservacion);
 
@@ -121,9 +136,61 @@ public class Ventana1 extends javax.swing.JFrame {
         jTabbedPane2.addTab("Búsqueda de Reservación", jPanel3);
 
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        mostrarClientes.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        mostrarClientes.setText("Mostrar Clientes");
+        mostrarClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mostrarClientesActionPerformed(evt);
+            }
+        });
+        jPanel4.add(mostrarClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 200, 50));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Número de Habitación");
+        jPanel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 200, 30));
+
+        numeroHabitacion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jPanel4.add(numeroHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 200, 40));
+
+        datosClientesHistoricos.setEditable(false);
+        datosClientesHistoricos.setColumns(20);
+        datosClientesHistoricos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        datosClientesHistoricos.setRows(5);
+        jScrollPane3.setViewportView(datosClientesHistoricos);
+
+        jPanel4.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 50, 310, 310));
+
         jTabbedPane2.addTab("Historial de Habitación", jPanel4);
 
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        cedulaReservacion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jPanel5.add(cedulaReservacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 200, 40));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("Cédula de Identidad");
+        jPanel5.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 200, 30));
+
+        checkIn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        checkIn.setText("Realizar Check-In");
+        checkIn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkInActionPerformed(evt);
+            }
+        });
+        jPanel5.add(checkIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 200, 50));
+
+        datosCheckIn.setEditable(false);
+        datosCheckIn.setColumns(20);
+        datosCheckIn.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        datosCheckIn.setRows(5);
+        jScrollPane4.setViewportView(datosCheckIn);
+
+        jPanel5.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 50, 310, 310));
+
         jTabbedPane2.addTab("Check-In", jPanel5);
 
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -155,7 +222,8 @@ public class Ventana1 extends javax.swing.JFrame {
         if (bookingHotel.getHashEstado().buscar(apellidoC, nombreC) == null) {
             info = """
                    El cliente buscado no se encuentra
-                   hospedado en el Hotel.""";
+                   hospedado en el Hotel.
+                   """;
         } else {
             info = bookingHotel.getHashEstado().buscar(apellidoC, nombreC).toString();
         }
@@ -167,16 +235,94 @@ public class Ventana1 extends javax.swing.JFrame {
     private void buscarReservacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarReservacionActionPerformed
         // TODO add your handling code here:
         try {
-            String texto = cedula.getText();
-            int cedulaValor = Integer.parseInt(texto);
-            String info = bookingHotel.getArbolReservaciones().buscar(cedulaValor).toString();
+            String texto = cedula.getText().trim();
+            int cedulaC = Integer.parseInt(texto);
+            String info;
+            if (bookingHotel.getArbolReservaciones().buscarReservacion(cedulaC) == null) {
+                info = "La reservación no existe.";
+            } else {
+                info = bookingHotel.getArbolReservaciones().buscarReservacion(cedulaC).toString();
+            }
             datosReservacion.setText(info);
             cedula.setText("");
         } catch (NumberFormatException e) {
             datosReservacion.setText("Por favor, ingrese un valor válido.");
+            cedula.setText("");
         }
 
+    
     }//GEN-LAST:event_buscarReservacionActionPerformed
+
+    private void checkInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkInActionPerformed
+        // TODO add your handling code here:
+        try {
+            String texto = cedulaReservacion.getText().trim();
+            int cedulaReservacionC = Integer.parseInt(texto);
+            String info;
+            Reservacion reserva;
+            Cliente cliente;
+            Habitacion habitacion;
+            int habitacionAsignada = -1;
+            if (bookingHotel.getArbolReservaciones().buscarReservacion(cedulaReservacionC) == null) {
+                info = "La reservación no existe.";
+            } else {
+                reserva = bookingHotel.getArbolReservaciones().buscarReservacion(cedulaReservacionC);
+                NodoListaSimple aux = bookingHotel.getHabitacionesDisponibles().getpFirst();
+                while (aux != null) {
+                    habitacion = bookingHotel.getArbolHabitaciones().buscarHabitacion((int)aux.getData());
+                    if (habitacion.getTipo().equals(reserva.getTipoHabitacion())) {
+                        habitacionAsignada = (int)aux.getData();
+                        bookingHotel.getHabitacionesDisponibles().eliminar(aux.getData());
+                        System.out.println(bookingHotel.getHabitacionesDisponibles().toString());
+                        break;
+                    }
+                    aux = aux.getpNext();
+                }
+                if (habitacionAsignada == -1) {
+                    info = "No hay habitaciones disponibles en este momento.";
+                } else {
+                    cliente = new Cliente(reserva.getPrimerNombre(), reserva.getSegundoNombre(), reserva.getEmail(), reserva.getGenero(), reserva.getCelular(), reserva.getLlegada(), habitacionAsignada);
+                    bookingHotel.getHashEstado().insertar(cliente);
+                    // bookingHotel.getArbolReservaciones().eliminar(reserva);
+                    info = "Se le ha asignado la habitación " + habitacionAsignada + ".\nSus datos a continuación:\n\n" + cliente.toString();
+                    
+                }
+                
+            }
+            datosCheckIn.setText(info);
+            cedulaReservacion.setText("");
+        } catch (NumberFormatException e) {
+            datosCheckIn.setText("Por favor, ingrese un valor válido.");
+            cedulaReservacion.setText("");
+        }
+        
+        
+    }//GEN-LAST:event_checkInActionPerformed
+
+    private void mostrarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarClientesActionPerformed
+        // TODO add your handling code here:
+        try {
+            String texto = numeroHabitacion.getText().trim();
+            int numeroHabitacionC = Integer.parseInt(texto);
+            String info;
+            if (bookingHotel.getArbolHabitaciones().buscarHabitacion(numeroHabitacionC) == null) {
+                info = "La habitación no existe.";
+            } else {
+                if (bookingHotel.getArbolHabitaciones().buscarHabitacion(numeroHabitacionC).getClientes() == null) {
+                    info = "Nadie se ha hospedado en esta habitación.";
+                } else {
+                    info = bookingHotel.getArbolHabitaciones().buscarHabitacion(numeroHabitacionC).getClientes().toStringClientesHistoricos();
+                }
+                
+            }
+            
+            datosClientesHistoricos.setText(info);
+            numeroHabitacion.setText("");
+        } catch (NumberFormatException e) {
+            datosClientesHistoricos.setText("Por favor, ingrese un valor válido.");
+            numeroHabitacion.setText("");
+        }
+    }//GEN-LAST:event_mostrarClientesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -219,11 +365,17 @@ public class Ventana1 extends javax.swing.JFrame {
     private javax.swing.JButton buscarCliente;
     private javax.swing.JButton buscarReservacion;
     private javax.swing.JTextField cedula;
+    private javax.swing.JTextField cedulaReservacion;
+    private javax.swing.JButton checkIn;
+    private javax.swing.JTextArea datosCheckIn;
     private javax.swing.JTextArea datosCliente;
+    private javax.swing.JTextArea datosClientesHistoricos;
     private javax.swing.JTextArea datosReservacion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -232,7 +384,11 @@ public class Ventana1 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JButton mostrarClientes;
     private javax.swing.JTextField nombre;
+    private javax.swing.JTextField numeroHabitacion;
     // End of variables declaration//GEN-END:variables
 }

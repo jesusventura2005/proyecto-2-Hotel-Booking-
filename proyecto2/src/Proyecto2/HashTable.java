@@ -1,3 +1,5 @@
+package Proyecto2;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -43,6 +45,19 @@ public class HashTable {
         }
         return null;
     }
+    
+    public void eliminar(String apellido, String nombre) {
+        int hash = hash(apellido + nombre);
+        int index = hash;
+        while (table[index] != null) {
+            if (table[index].getApellido().equals(apellido) && table[index].getNombre().equals(nombre)) {
+                table[index] = null; // Eliminamos el elemento de la tabla
+                size--;
+                return;
+            }
+            index = (index + 1) % capacity; // Sondaje lineal
+        }
+    }
 
     private int hash(String key) {
         int hash = 0;
@@ -51,5 +66,6 @@ public class HashTable {
         }
         return Math.abs(hash);
     }
+    
 }
 

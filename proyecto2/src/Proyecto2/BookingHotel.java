@@ -1,3 +1,5 @@
+package Proyecto2;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -21,10 +23,14 @@ import org.apache.poi.ss.util.NumberToTextConverter;
 public class BookingHotel {
     private ABB arbolReservaciones;
     private HashTable hashEstado;
+    private ABB arbolHabitaciones;
+    private ListaSimple habitacionesDisponibles;
 
     public BookingHotel() {
         arbolReservaciones = new ABB();
         hashEstado = new HashTable();
+        arbolHabitaciones = new ABB();
+        habitacionesDisponibles = new ListaSimple();
     }
 
     public ABB getArbolReservaciones() {
@@ -42,6 +48,26 @@ public class BookingHotel {
     public void setHashEstado(HashTable hashEstado) {
         this.hashEstado = hashEstado;
     }
+
+    public ABB getArbolHabitaciones() {
+        return arbolHabitaciones;
+    }
+
+    public void setArbolHabitaciones(ABB arbolHabitaciones) {
+        this.arbolHabitaciones = arbolHabitaciones;
+    }
+
+    public ListaSimple getHabitacionesDisponibles() {
+        return habitacionesDisponibles;
+    }
+
+    public void setHabitacionesDisponibles(ListaSimple habitacionesDisponibles) {
+        this.habitacionesDisponibles = habitacionesDisponibles;
+    }
+    
+    
+    
+    
     
     
     public void cargarReservaciones(String rutaExcel) {
@@ -68,7 +94,7 @@ public class BookingHotel {
                     Date salidaDate = row.getCell(8).getDateCellValue();
                     String salida = dateFormat.format(salidaDate); // Obtener la fecha de salida
                     Reservacion reserva = new Reservacion(cedula, primerNombre, segundoNombre, email, genero, habitacion, celular, llegada, salida); // Crear la reserva
-                    arbolReservaciones.insertar(reserva); // Insertar la reserva en el árbol
+                    arbolReservaciones.insertarReservacion(reserva); // Insertar la reserva en el árbol
                     
                 }
                 rowNum++;
@@ -97,6 +123,7 @@ public class BookingHotel {
             Sheet s = wb.getSheet("estado"); // Hoja con los datos de los clientes
             int rowNum = 0;
             int habitacionAnterior = -1; // Para manejar los casos donde no se proporciona el número de habitación
+            ListaSimple habitacionesOcupadas = new ListaSimple();
             for (Row row : s) {
                 if (rowNum > 0) { // Verificar que no sea la primera fila
                     Cell habitacionCell = row.getCell(0); // Celda con el número de habitación
@@ -114,11 +141,14 @@ public class BookingHotel {
                     String celular = row.getCell(5).getStringCellValue(); // Obtener el celular
                     Date llegadaDate = row.getCell(6).getDateCellValue();
                     String llegada = dateFormat.format(llegadaDate); // Obtener la fecha de llegada
+                    habitacionesOcupadas.insertarFinal(habitacion);
                     Cliente cliente = new Cliente(primerNombre, segundoNombre, email, genero, celular, llegada, habitacion); // Crear el cliente
                     hashEstado.insertar(cliente); // Insertar el cliente en la tabla hash
                 }
                 rowNum++;
             }
+            encontrarHabitacionesDisponibles(habitacionesOcupadas);
+            
         } catch (Exception e) {
             System.out.println("Error al cargar los clientes");
             e.printStackTrace();
@@ -133,6 +163,97 @@ public class BookingHotel {
             }
         }
     }
+    
+    public void encontrarHabitacionesDisponibles(ListaSimple habitacionesOcupadas) {
+        int totalHabitaciones = 300; // Total de habitaciones en el hotel
+        // Recorremos desde la habitación 1 hasta el total de habitaciones en el hotel
+        for (int i = 1; i <= totalHabitaciones; i++) {
+            // Verificamos si la habitación está ocupada
+            if (!estaOcupada(habitacionesOcupadas, i)) {
+                // Si la habitación no está ocupada, la agregamos a la lista de habitaciones disponibles
+                habitacionesDisponibles.insertarFinal(i);
+            }
+        }
+    }
+
+    // Método para verificar si una habitación está ocupada
+    private boolean estaOcupada(ListaSimple habitacionesOcupadas, int numeroHabitacion) {
+        NodoListaSimple current = habitacionesOcupadas.getpFirst();
+        // Recorremos la lista de habitaciones ocupadas para verificar si la habitación está en ella
+        while (current != null) {
+            int habitacionOcupada = (int) current.getData();
+            if (habitacionOcupada == numeroHabitacion) {
+                // La habitación está ocupada
+                return true;
+            }
+            current = current.getpNext();
+        }
+        // La habitación no está ocupada
+        return false;
+    }
+
+
+    public void cargarHabitaciones(String rutaExcel) {
+        Workbook wb = null;
+        try {
+            FileInputStream fis = new FileInputStream(rutaExcel);
+            wb = WorkbookFactory.create(fis);
+            Sheet historicoSheet = wb.getSheet("Histórico");
+            Sheet habitacionesSheet = wb.getSheet("habitaciones");
+
+            // Crear listas de clientes históricos por habitación
+            ListaSimple[] clientesPorHabitacion = new ListaSimple[301]; // Numero de habitaciones
+            for (Row row : historicoSheet) {
+                if (row.getRowNum() > 0) { // Omitir encabezados
+                    int numeroHabitacion = (int) row.getCell(6).getNumericCellValue();
+                    ClienteHistorico clienteHistorico = crearClienteHistoricoDesdeFila(row);
+                    // Verificar si ya se creó la lista para esta habitación
+                    if (clientesPorHabitacion[numeroHabitacion] == null) {
+                        clientesPorHabitacion[numeroHabitacion] = new ListaSimple();
+                    }
+                    clientesPorHabitacion[numeroHabitacion].insertarFinal(clienteHistorico);
+                }
+            }
+
+            // Crear habitaciones y asignarles la lista de clientes
+            for (Row row : habitacionesSheet) {
+                if (row.getRowNum() > 0) { // Omitir encabezados
+                    int numeroHabitacion = (int) row.getCell(0).getNumericCellValue();
+                    String tipoHabitacion = row.getCell(1).getStringCellValue();
+                    int piso = (int) row.getCell(2).getNumericCellValue();
+                    ListaSimple clientesHistoricos = (numeroHabitacion < clientesPorHabitacion.length)
+                            ? clientesPorHabitacion[numeroHabitacion] : new ListaSimple();
+                    Habitacion habitacion = new Habitacion(numeroHabitacion, tipoHabitacion, piso, clientesHistoricos);
+                    arbolHabitaciones.insertarHabitacion(habitacion);
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error al cargar el histórico y las habitaciones");
+            e.printStackTrace();
+        } finally {
+            try {
+                if (wb != null) {
+                    wb.close();
+                }
+            } catch (Exception ex) {
+                System.out.println("Error al cerrar el Workbook");
+                ex.printStackTrace();
+            }
+        }
+    }
+
+    private ClienteHistorico crearClienteHistoricoDesdeFila(Row row) {
+        int cedula = (int) row.getCell(0).getNumericCellValue();
+        String primerNombre = row.getCell(1).getStringCellValue();
+        String apellido = row.getCell(2).getStringCellValue();
+        String email = row.getCell(3).getStringCellValue();
+        String genero = row.getCell(4).getStringCellValue();
+        String llegada = new SimpleDateFormat("dd/MM/yyyy").format(row.getCell(5).getDateCellValue());
+        int numeroHabitacion = (int) row.getCell(6).getNumericCellValue();
+        return new ClienteHistorico(cedula, primerNombre, apellido, email, genero, llegada, numeroHabitacion);
+    }
+
 
 
 //    public void Buscar(String cliente, String sheetName) {

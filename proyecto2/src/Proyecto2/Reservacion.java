@@ -1,3 +1,5 @@
+package Proyecto2;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -14,7 +16,7 @@ public class Reservacion {
     private String segundoNombre;
     private String email;
     private String genero;
-    private String habitacion;
+    private String tipoHabitacion;
     private String celular;
     private String llegada;
     private String salida;
@@ -25,7 +27,7 @@ public class Reservacion {
         this.segundoNombre = segundoNombre;
         this.email = email;
         this.genero = genero;
-        this.habitacion = habitacion;
+        this.tipoHabitacion = habitacion;
         this.celular = celular;
         this.llegada = llegada;
         this.salida = salida;
@@ -71,12 +73,12 @@ public class Reservacion {
         this.genero = genero;
     }
 
-    public String getHabitacion() {
-        return habitacion;
+    public String getTipoHabitacion() {
+        return tipoHabitacion;
     }
 
     public void setHabitacion(String habitacion) {
-        this.habitacion = habitacion;
+        this.tipoHabitacion = habitacion;
     }
 
     public String getCelular() {
@@ -115,7 +117,7 @@ public class Reservacion {
             Celular: %s
             Llegada: %s
             Salida: %s
-            """.formatted(cedula, primerNombre, segundoNombre, email, genero, habitacion, celular, llegada, salida);
+            """.formatted(cedula, primerNombre, segundoNombre, email, genero, tipoHabitacion, celular, llegada, salida);
     }
 
 }
