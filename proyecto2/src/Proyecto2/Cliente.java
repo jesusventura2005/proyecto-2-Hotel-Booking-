@@ -18,7 +18,6 @@ public class Cliente {
     private String celular;
     private String llegada;
     private int numeroHabitacion;
-    private int cedula;
 
     public Cliente(String nombre, String apellido, String email, String genero, String celular, String llegada, int numeroHabitacion) {
         this.nombre = nombre;
@@ -29,19 +28,6 @@ public class Cliente {
         this.llegada = llegada;
         this.numeroHabitacion = numeroHabitacion;
     }
-
-    public Cliente(String nombre, String apellido, String email, String genero, String celular, String llegada, int numeroHabitacion, int cedula) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.email = email;
-        this.genero = genero;
-        this.celular = celular;
-        this.llegada = llegada;
-        this.numeroHabitacion = numeroHabitacion;
-        this.cedula = cedula;
-    }
-    
-    
 
     public String getNombre() {
         return nombre;
@@ -98,16 +84,6 @@ public class Cliente {
     public void setLlegada(String llegada) {
         this.llegada = llegada;
     }
-
-    public int getCedula() {
-        return cedula;
-    }
-
-    public void setCedula(int cedula) {
-        this.cedula = cedula;
-    }
-    
-    
     
     @Override
     public String toString() {

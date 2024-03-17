@@ -86,7 +86,18 @@ public class ClienteHistorico {
     
     @Override
     public String toString() {
-        return """
+        if (cedula == -1){
+            return """
+            Datos del Cliente:
+            Cédula: Cédula no encontrada
+            Nombre: %s
+            Apellido: %s
+            Email: %s
+            Genero: %s
+            Llegada: %s
+            """.formatted(nombre, apellido, email, genero, llegada, numeroHabitacion);
+        } else {
+            return """
             Datos del Cliente:
             Cédula: %s
             Nombre: %s
@@ -95,6 +106,7 @@ public class ClienteHistorico {
             Genero: %s
             Llegada: %s
             """.formatted(cedula, nombre, apellido, email, genero, llegada, numeroHabitacion);
+        }
     }
     
 }

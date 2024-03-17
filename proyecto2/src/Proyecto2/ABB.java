@@ -112,6 +112,55 @@ public class ABB {
             return buscarRecursivoHabitacion(nodo.getHijo_der(), numero);
         }
     }
+    
+    public void eliminarReservacion(int cedula){
+        Reservacion reservacionbuscada = buscarReservacion(cedula); 
+        raiz = eliminarRecursivo(raiz, reservacionbuscada); 
+    }
+
+    public Nodo_ABB eliminarRecursivo(Nodo_ABB nodo, Object dato){
+        Nodo_ABB temp; 
+        if (nodo == null){ 
+            return nodo; 
+        } 
+
+        if (((Reservacion)dato).getCedula() < ((Reservacion)nodo.getDato()).getCedula()) { 
+            nodo.setHijo_izq(eliminarRecursivo(nodo.getHijo_izq(), dato)); 
+
+        }else if(((Reservacion)dato).getCedula() > ((Reservacion)nodo.getDato()).getCedula()){
+            nodo.setHijo_der(eliminarRecursivo(nodo.getHijo_der(), dato)); 
+        }else{ 
+
+            if ((nodo.getHijo_izq() == null) || (nodo.getHijo_der() == null)){ 
+                temp = null; 
+                    if (temp == nodo.getHijo_der()){
+                        temp = nodo.getHijo_izq(); 
+                    }else{ 
+                        temp = nodo.getHijo_der(); 
+                    }
+
+                    if (temp == null){
+                        nodo = null;
+                    }else{ 
+                        nodo = temp; 
+                    }
+            }else{ 
+
+                temp = getNodoValorMaximo(nodo.getHijo_der());
+
+                nodo.setDato((Reservacion)temp.getDato());
+
+                nodo.setHijo_der(eliminarRecursivo(nodo.getHijo_der(), ((Reservacion)temp.getDato()).getCedula()));
+
+            }
+        }
+
+        if (nodo == null){
+            nodo = actualizarAlturaReservacion(nodo, dato);
+            return nodo; 
+        } 
+        return nodo; 
+    }
 
 
     private int calcularAlturadeRaiz (Nodo_ABB p){
@@ -252,6 +301,16 @@ public class ABB {
         }else{ 
             return nodo.getAltura();
         }
+    }
+    
+    private Nodo_ABB getNodoValorMaximo(Nodo_ABB nodo) {
+        Nodo_ABB actual = nodo;
+
+        while (actual.getHijo_der() != null){
+           actual = actual.getHijo_der();
+        }
+
+        return actual;
     }
 
 }

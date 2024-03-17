@@ -60,6 +60,13 @@ public class Ventana1 extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         datosCheckIn = new javax.swing.JTextArea();
         jPanel6 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        apellidoCheck = new javax.swing.JTextField();
+        nombreCheck = new javax.swing.JTextField();
+        CheckOut = new javax.swing.JButton();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        datosCheckOut = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -194,6 +201,40 @@ public class Ventana1 extends javax.swing.JFrame {
         jTabbedPane2.addTab("Check-In", jPanel5);
 
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("Nombre del Cliente");
+        jPanel6.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 200, 30));
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("Apellido del Cliente");
+        jPanel6.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 200, 30));
+
+        apellidoCheck.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jPanel6.add(apellidoCheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 200, 40));
+
+        nombreCheck.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jPanel6.add(nombreCheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 200, 40));
+
+        CheckOut.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        CheckOut.setText("Realizar Check-Out");
+        CheckOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CheckOutActionPerformed(evt);
+            }
+        });
+        jPanel6.add(CheckOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 200, 50));
+
+        datosCheckOut.setEditable(false);
+        datosCheckOut.setColumns(20);
+        datosCheckOut.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        datosCheckOut.setRows(5);
+        jScrollPane5.setViewportView(datosCheckOut);
+
+        jPanel6.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 50, 310, 310));
+
         jTabbedPane2.addTab("Check-Out", jPanel6);
 
         jPanel1.add(jTabbedPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 690, 440));
@@ -273,7 +314,6 @@ public class Ventana1 extends javax.swing.JFrame {
                     if (habitacion.getTipo().equals(reserva.getTipoHabitacion())) {
                         habitacionAsignada = (int)aux.getData();
                         bookingHotel.getHabitacionesDisponibles().eliminar(aux.getData());
-                        System.out.println(bookingHotel.getHabitacionesDisponibles().toString());
                         break;
                     }
                     aux = aux.getpNext();
@@ -283,7 +323,7 @@ public class Ventana1 extends javax.swing.JFrame {
                 } else {
                     cliente = new Cliente(reserva.getPrimerNombre(), reserva.getSegundoNombre(), reserva.getEmail(), reserva.getGenero(), reserva.getCelular(), reserva.getLlegada(), habitacionAsignada);
                     bookingHotel.getHashEstado().insertar(cliente);
-                    // bookingHotel.getArbolReservaciones().eliminar(reserva);
+                    bookingHotel.getArbolReservaciones().eliminarReservacion(reserva.getCedula());
                     info = "Se le ha asignado la habitación " + habitacionAsignada + ".\nSus datos a continuación:\n\n" + cliente.toString();
                     
                 }
@@ -324,6 +364,31 @@ public class Ventana1 extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_mostrarClientesActionPerformed
 
+    private void CheckOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckOutActionPerformed
+        // TODO add your handling code here:
+        String nombreC = nombreCheck.getText().trim();
+        String apellidoC = apellidoCheck.getText().trim();
+        String info;
+        Cliente cliente;
+        if (bookingHotel.getHashEstado().buscar(apellidoC, nombreC) == null) {
+            info = """
+                   El cliente buscado no se encuentra
+                   hospedado en el Hotel.
+                   """;
+        } else {
+            cliente = bookingHotel.getHashEstado().buscar(apellidoC, nombreC);
+            int numeroHabitacionC = cliente.getNumeroHabitacion();
+            ClienteHistorico clienteHistorico = new ClienteHistorico(-1, cliente.getNombre(), cliente.getApellido(), cliente.getEmail(), cliente.getGenero(), cliente.getLlegada(), numeroHabitacionC);
+            bookingHotel.getArbolHabitaciones().buscarHabitacion(numeroHabitacionC).getClientes().insertarFinal(clienteHistorico);
+            bookingHotel.getHashEstado().eliminar(apellidoC, nombreC);
+            bookingHotel.getHabitacionesDisponibles().insertarFinal(numeroHabitacionC);
+            info = "CheckOut realizado con éxito.";
+        }
+        datosCheckOut.setText(info);
+        nombreCheck.setText("");
+        apellidoCheck.setText("");
+    }//GEN-LAST:event_CheckOutActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -361,13 +426,16 @@ public class Ventana1 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton CheckOut;
     private javax.swing.JTextField apellido;
+    private javax.swing.JTextField apellidoCheck;
     private javax.swing.JButton buscarCliente;
     private javax.swing.JButton buscarReservacion;
     private javax.swing.JTextField cedula;
     private javax.swing.JTextField cedulaReservacion;
     private javax.swing.JButton checkIn;
     private javax.swing.JTextArea datosCheckIn;
+    private javax.swing.JTextArea datosCheckOut;
     private javax.swing.JTextArea datosCliente;
     private javax.swing.JTextArea datosClientesHistoricos;
     private javax.swing.JTextArea datosReservacion;
@@ -376,6 +444,8 @@ public class Ventana1 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -386,9 +456,11 @@ public class Ventana1 extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JButton mostrarClientes;
     private javax.swing.JTextField nombre;
+    private javax.swing.JTextField nombreCheck;
     private javax.swing.JTextField numeroHabitacion;
     // End of variables declaration//GEN-END:variables
 }

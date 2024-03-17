@@ -43,7 +43,7 @@ public class Nodo_ABB {
         return dato;
     }
 
-    public void setDato(int dato) {
+    public void setDato(Object dato) {
         this.dato = dato;
     }
 
