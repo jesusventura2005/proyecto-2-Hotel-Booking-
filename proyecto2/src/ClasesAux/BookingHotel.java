@@ -21,8 +21,10 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.ss.util.NumberToTextConverter;
 
 /**
- *
- * @author jesus
+ * Clase que representa un sistema de reservas de hotel.
+ * Permite cargar datos desde archivos Excel, buscar clientes y gestionar las reservas y habitaciones.
+ * @author Daniel Fariña
+ * @version 16/03/2024
  */
 public class BookingHotel {
     private ABB arbolReservaciones;
@@ -31,6 +33,10 @@ public class BookingHotel {
     private ListaSimple habitacionesDisponibles;
     private boolean error;
 
+    /**
+     * Constructor de la clase BookingHotel.
+     * Inicializa las estructuras de datos necesarias para el sistema.
+     */
     public BookingHotel() {
         arbolReservaciones = new ABB();
         hashEstado = new HashTable();
@@ -39,46 +45,91 @@ public class BookingHotel {
         error = false;
     }
 
+    /**
+     * Obtiene el árbol de reservaciones del hotel.
+     * @return el árbol de reservaciones
+     */
     public ABB getArbolReservaciones() {
         return arbolReservaciones;
     }
 
+    /**
+     * Establece el árbol de reservaciones del hotel.
+     * @param arbolReservaciones el árbol de reservaciones a establecer
+     */
     public void setArbolReservaciones(ABB arbolReservaciones) {
         this.arbolReservaciones = arbolReservaciones;
     }
 
+    /**
+     * Obtiene la tabla hash que almacena el estado de los clientes en el hotel.
+     * @return la tabla hash del estado de los clientes
+     */
     public HashTable getHashEstado() {
         return hashEstado;
     }
 
+    /**
+     * Establece la tabla hash que almacena el estado de los clientes en el hotel.
+     * @param hashEstado la tabla hash del estado de los clientes a establecer
+     */
     public void setHashEstado(HashTable hashEstado) {
         this.hashEstado = hashEstado;
     }
 
+    /**
+     * Obtiene el árbol de habitaciones del hotel.
+     * @return el árbol de habitaciones
+     */
     public ABB getArbolHabitaciones() {
         return arbolHabitaciones;
     }
 
+    /**
+     * Establece el árbol de habitaciones del hotel.
+     * @param arbolHabitaciones el árbol de habitaciones a establecer
+     */
     public void setArbolHabitaciones(ABB arbolHabitaciones) {
         this.arbolHabitaciones = arbolHabitaciones;
     }
 
+    /**
+     * Obtiene la lista de habitaciones disponibles en el hotel.
+     * @return la lista de habitaciones disponibles
+     */
     public ListaSimple getHabitacionesDisponibles() {
         return habitacionesDisponibles;
     }
 
+    /**
+     * Establece la lista de habitaciones disponibles en el hotel.
+     * @param habitacionesDisponibles la lista de habitaciones disponibles a establecer
+     */
     public void setHabitacionesDisponibles(ListaSimple habitacionesDisponibles) {
         this.habitacionesDisponibles = habitacionesDisponibles;
     }
 
+    /**
+     * Indica si se ha producido algún error en el sistema.
+     * @return true si hay un error, false en caso contrario
+     */
     public boolean isError() {
         return error;
     }
 
+    /**
+     * Establece el estado de error del sistema.
+     * @param error true para indicar que hay un error, false en caso contrario
+     */
     public void setError(boolean error) {
         this.error = error;
     }
     
+    // Método para cargar reservaciones desde un archivo Excel
+    /**
+     * Carga las reservaciones desde un archivo Excel.
+     * @param rutaExcel la ruta del archivo Excel que contiene las reservaciones
+     */
     public void cargarReservaciones(String rutaExcel) {
         Workbook wb = null;
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -121,6 +172,11 @@ public class BookingHotel {
         }
     }
     
+    // Método para cargar clientes desde un archivo Excel
+    /**
+     * Carga los clientes desde un archivo Excel.
+     * @param rutaExcel la ruta del archivo Excel que contiene los clientes
+     */
     public void cargarClientes(String rutaExcel) {
         Workbook wb = null;
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -169,6 +225,10 @@ public class BookingHotel {
         }
     }
     
+    /**
+     * Encuentra las habitaciones disponibles en el hotel, a partir de las habitaciones ocupadas.
+     * @param habitacionesOcupadas la lista de habitaciones ocupadas
+     */
     public void encontrarHabitacionesDisponibles(ListaSimple habitacionesOcupadas) {
         int totalHabitaciones = 300; // Total de habitaciones en el hotel
         // Recorremos desde la habitación 1 hasta el total de habitaciones en el hotel
@@ -181,7 +241,13 @@ public class BookingHotel {
         }
     }
 
-    // Método para verificar si una habitación está ocupada
+    // Método privado para verificar si una habitación está ocupada
+    /**
+     * Verifica si una habitación está ocupada.
+     * @param habitacionesOcupadas la lista de habitaciones ocupadas
+     * @param numeroHabitacion el número de habitación a verificar
+     * @return true si la habitación está ocupada, false en caso contrario
+     */
     private boolean estaOcupada(ListaSimple habitacionesOcupadas, int numeroHabitacion) {
         NodoListaSimple current = habitacionesOcupadas.getpFirst();
         // Recorremos la lista de habitaciones ocupadas para verificar si la habitación está en ella
@@ -197,7 +263,11 @@ public class BookingHotel {
         return false;
     }
 
-
+    // Método para cargar habitaciones desde un archivo Excel
+    /**
+     * Carga las habitaciones desde un archivo Excel.
+     * @param rutaExcel la ruta del archivo Excel que contiene las habitaciones
+     */
     public void cargarHabitaciones(String rutaExcel) {
         Workbook wb = null;
         try {
@@ -246,6 +316,12 @@ public class BookingHotel {
         }
     }
 
+    // Método privado para crear un ClienteHistorico desde una fila de datos de Excel
+    /**
+     * Crea un objeto ClienteHistorico a partir de una fila de datos de un archivo Excel.
+     * @param row la fila de datos de Excel
+     * @return el objeto ClienteHistorico creado
+     */
     private ClienteHistorico crearClienteHistoricoDesdeFila(Row row) {
         int cedula = (int) row.getCell(0).getNumericCellValue();
         String primerNombre = row.getCell(1).getStringCellValue();
@@ -257,7 +333,12 @@ public class BookingHotel {
         return new ClienteHistorico(cedula, primerNombre, apellido, email, genero, llegada, numeroHabitacion);
     }
 
-
+    // Método para buscar un cliente en un archivo Excel
+    /**
+     * Busca un cliente en un archivo Excel.
+     * @param cliente el nombre del cliente a buscar
+     * @param sheetName el nombre de la hoja de cálculo en la que buscar
+     */
     public void Buscar(String cliente, String sheetName) {
         Workbook wb = null;
         try {
@@ -287,8 +368,5 @@ public class BookingHotel {
         }
     }
     
-    public void insertarArbol() {
-
-    }
 
 }

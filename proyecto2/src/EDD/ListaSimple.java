@@ -8,61 +8,76 @@ import ClasesAux.ClienteHistorico;
  */
 
 /**
- *
- * @author 58412
+ * Esta clase representa una lista simplemente enlazada.
+ * @author Daniel Fariña
+ * @version 17/03/2024
  */
 public class ListaSimple {
     NodoListaSimple pFirst;
     NodoListaSimple pLast;
     int size;
 
+    /**
+     * Constructor que crea una lista vacía.
+     */
     public ListaSimple() {
         this.pFirst = null;
         this.pLast = null;
         this.size = 0;
     }
 
-    public ListaSimple(NodoListaSimple pFirst, NodoListaSimple pLast, int size) {
-        this.pFirst = pFirst;
-        this.pLast = pLast;
-        this.size = size;
-    }
-
+    /**
+     * Obtiene el primer nodo de la lista.
+     * @return El primer nodo de la lista.
+     */
     public NodoListaSimple getpFirst() {
         return pFirst;
     }
 
+    /**
+     * Obtiene el último nodo de la lista.
+     * @return El último nodo de la lista.
+     */
     public NodoListaSimple getpLast() {
         return pLast;
     }
 
+    /**
+     * Obtiene el tamaño actual de la lista.
+     * @return El tamaño actual de la lista.
+     */
     public int getSize() {
         return size;
     }
 
+    /**
+     * Establece el primer nodo de la lista.
+     * @param pFirst El nuevo primer nodo de la lista.
+     */
     public void setpFirst(NodoListaSimple pFirst) {
         this.pFirst = pFirst;
     }
 
+    /**
+     * Establece el último nodo de la lista.
+     * @param pLast El nuevo último nodo de la lista.
+     */
     public void setpLast(NodoListaSimple pLast) {
         this.pLast = pLast;
     }
 
+    /**
+     * Establece el tamaño actual de la lista.
+     * @param size El nuevo tamaño actual de la lista.
+     */
     public void setSize(int size) {
         this.size = size;
     }
     
-    public void insertarInicio(Object data){
-        NodoListaSimple nuevoNodo = new NodoListaSimple(data);
-        if(this.esVacio()){
-            pFirst = pLast = nuevoNodo;
-        }else{
-            nuevoNodo.setpNext(pFirst);
-            pFirst = nuevoNodo;
-        }
-        size++;
-    }
-    
+    /**
+     * Inserta un nuevo nodo al final de la lista con el dato especificado.
+     * @param data El dato a almacenar en el nuevo nodo.
+     */
     public void insertarFinal(Object data){
         NodoListaSimple nuevoNodo = new NodoListaSimple(data);
         if(this.esVacio()){
@@ -74,16 +89,28 @@ public class ListaSimple {
         size++;
     }
     
+    /**
+     * Verifica si la lista está vacía.
+     * @return true si la lista está vacía, false de lo contrario.
+     */
     public boolean esVacio(){
         return getpFirst()==null;
     }
     
+    /**
+     * Vacía la lista, eliminando todos sus nodos.
+     */
     public void vaciar(){
         this.pFirst = null;
         this.pLast = null;
         this.size = 0;
     }
-            
+    
+    /**
+     * Elimina el nodo que contiene el valor especificado de la lista.
+     * Si hay varios nodos con el mismo valor, elimina el primero que encuentra.
+     * @param valor El valor a eliminar de la lista.
+     */
     public void eliminar(Object valor) {
         if (pFirst == null) {
             // La lista está vacía, no hay nada que eliminar
@@ -118,22 +145,11 @@ public class ListaSimple {
             }
         }
     }
-
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("ListaSimple: [");
-        NodoListaSimple current = pFirst;
-        while (current != null) {
-            sb.append(current.getData());
-            if (current.getpNext() != null) {
-                sb.append(", ");
-            }
-            current = current.getpNext();
-        }
-        sb.append("]");
-        return sb.toString();
-    }
     
+    /**
+     * Genera una representación en forma de cadena de texto de los clientes históricos almacenados en la lista.
+     * @return Una cadena de texto que contiene la información de los clientes históricos.
+     */
     public String toStringClientesHistoricos() {
         StringBuilder sb = new StringBuilder();
         sb.append("""

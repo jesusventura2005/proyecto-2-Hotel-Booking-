@@ -3,14 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/drali/Documents/NetBeansProjects/proyecto-2-Hotel-Booking-/proyecto2/src/Proyecto2/Main.java</file>
-            <file>file:/C:/Users/drali/Documents/NetBeansProjects/proyecto-2-Hotel-Booking-/proyecto2/src/Proyecto2/Nodo_ABB.java</file>
-            <file>file:/C:/Users/drali/Documents/NetBeansProjects/proyecto-2-Hotel-Booking-/proyecto2/src/Proyecto2/ABB.java</file>
-            <file>file:/C:/Users/drali/Documents/NetBeansProjects/proyecto-2-Hotel-Booking-/proyecto2/src/Proyecto2/Cliente.java</file>
-            <file>file:/C:/Users/drali/Documents/NetBeansProjects/proyecto-2-Hotel-Booking-/proyecto2/src/Proyecto2/Ventana2.java</file>
-            <file>file:/C:/Users/drali/Documents/NetBeansProjects/proyecto-2-Hotel-Booking-/proyecto2/src/Proyecto2/Ventana1.java</file>
-            <file>file:/C:/Users/drali/Documents/NetBeansProjects/proyecto-2-Hotel-Booking-/proyecto2/src/Proyecto2/BookingHotel.java</file>
-            <file>file:/C:/Users/drali/Documents/NetBeansProjects/proyecto-2-Hotel-Booking-/proyecto2/src/Proyecto2/ListaSimple.java</file>
+            <file>file:/C:/Users/58412/Documents/NetBeansProjects/proyecto-2-Hotel-Booking-/proyecto2/src/EDD/ListaSimple.java</file>
+            <file>file:/C:/Users/58412/Documents/NetBeansProjects/proyecto-2-Hotel-Booking-/proyecto2/src/Ventanas/Ventana1.java</file>
+            <file>file:/C:/Users/58412/Documents/NetBeansProjects/proyecto-2-Hotel-Booking-/proyecto2/src/EDD/ABB.java</file>
+            <file>file:/C:/Users/58412/Documents/NetBeansProjects/proyecto-2-Hotel-Booking-/proyecto2/src/Proyecto2/Main.java</file>
+            <file>file:/C:/Users/58412/Documents/NetBeansProjects/proyecto-2-Hotel-Booking-/proyecto2/src/Ventanas/Ventana2.java</file>
+            <file>file:/C:/Users/58412/Documents/NetBeansProjects/proyecto-2-Hotel-Booking-/proyecto2/src/ClasesAux/Habitacion.java</file>
+            <file>file:/C:/Users/58412/Documents/NetBeansProjects/proyecto-2-Hotel-Booking-/proyecto2/src/EDD/Nodo_ABB.java</file>
+            <file>file:/C:/Users/58412/Documents/NetBeansProjects/proyecto-2-Hotel-Booking-/proyecto2/src/ClasesAux/Cliente.java</file>
+            <file>file:/C:/Users/58412/Documents/NetBeansProjects/proyecto-2-Hotel-Booking-/proyecto2/src/ClasesAux/Reservacion.java</file>
+            <file>file:/C:/Users/58412/Documents/NetBeansProjects/proyecto-2-Hotel-Booking-/proyecto2/src/ClasesAux/ClienteHistorico.java</file>
+            <file>file:/C:/Users/58412/Documents/NetBeansProjects/proyecto-2-Hotel-Booking-/proyecto2/src/EDD/HashTable.java</file>
+            <file>file:/C:/Users/58412/Documents/NetBeansProjects/proyecto-2-Hotel-Booking-/proyecto2/src/EDD/NodoListaSimple.java</file>
+            <file>file:/C:/Users/58412/Documents/NetBeansProjects/proyecto-2-Hotel-Booking-/proyecto2/src/ClasesAux/BookingHotel.java</file>
         </group>
     </open-files>
 </project-private>

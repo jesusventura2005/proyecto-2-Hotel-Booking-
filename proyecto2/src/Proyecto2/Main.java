@@ -8,29 +8,21 @@ import Ventanas.Ventana2;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 /**
- *
- * @author jesus
+ * Clase principal que inicia la aplicación.
+ * Esta clase contiene el método `main`, que es el punto de entrada de la aplicación.
+ * @author Daniel Fariña
+ * @version 17/03/2024
  */
 public class Main {
 
-    
-     
+    /**
+     * Método principal que inicia la aplicación.
+     * @param args Los argumentos de la línea de comandos (no se utilizan en esta aplicación).
+     */
     public static void main(String[] args) {
         Ventana2 ventana = new Ventana2();
         ventana.setVisible(true);
-//        BookingHotel bookingHotel = new BookingHotel();
-//        bookingHotel.cargarClientes("C:\\Users\\drali\\Desktop\\Booking_hotel.xlsx");
-//        bookingHotel.cargarReservaciones("C:\\Users\\drali\\Desktop\\Booking_hotel.xlsx");
-//        bookingHotel.cargarHabitaciones("C:\\Users\\drali\\Desktop\\Booking_hotel.xlsx");
-////        Ventana1 ventana = new Ventana1(bookingHotel);
-////        ventana.setVisible(true);
-
         
-        
-        
-        
-      
-
     }
 
 }

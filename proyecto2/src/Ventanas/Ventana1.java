@@ -13,13 +13,16 @@ import ClasesAux.Reservacion;
  */
 
 /**
- *
- * @author 58412
+ * Clase que representa la ventana principal del sistema, donde se puede acceder a las 5 funcionalidades.
+ * @author Daniel Fariña
+ * @version 17/03/2024
  */
 public class Ventana1 extends javax.swing.JFrame {
     BookingHotel bookingHotel;
+    
     /**
-     * Creates new form Interfaz1
+     * Constructor de la clase Ventana1.
+     * @param bookingHotel el objeto BookingHotel que se utilizará en la ventana
      */
     public Ventana1(BookingHotel bookingHotel) {
         initComponents();
@@ -262,6 +265,9 @@ public class Ventana1 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+    * Botón para buscar un cliente por nombre y apellido.
+    */
     private void buscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarClienteActionPerformed
         // TODO add your handling code here:
         String nombreC = nombre.getText().trim();
@@ -280,6 +286,9 @@ public class Ventana1 extends javax.swing.JFrame {
         apellido.setText("");
     }//GEN-LAST:event_buscarClienteActionPerformed
 
+    /**
+    * Botón para buscar una reservación por número de cédula.
+    */
     private void buscarReservacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarReservacionActionPerformed
         // TODO add your handling code here:
         try {
@@ -301,6 +310,9 @@ public class Ventana1 extends javax.swing.JFrame {
     
     }//GEN-LAST:event_buscarReservacionActionPerformed
 
+    /**
+    * Botón para realizar el check-in de un cliente.
+    */
     private void checkInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkInActionPerformed
         // TODO add your handling code here:
         try {
@@ -344,6 +356,9 @@ public class Ventana1 extends javax.swing.JFrame {
         
     }//GEN-LAST:event_checkInActionPerformed
 
+    /**
+    * Botón para mostrar los clientes históricos de una habitación.
+    */
     private void mostrarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarClientesActionPerformed
         // TODO add your handling code here:
         try {
@@ -369,6 +384,9 @@ public class Ventana1 extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_mostrarClientesActionPerformed
 
+    /**
+    * Botón para realizar el check-out de un cliente.
+    */
     private void CheckOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckOutActionPerformed
         // TODO add your handling code here:
         String nombreC = nombreCheck.getText().trim();
