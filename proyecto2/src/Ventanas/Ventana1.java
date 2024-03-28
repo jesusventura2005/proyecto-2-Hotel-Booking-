@@ -94,23 +94,23 @@ public class Ventana1 extends javax.swing.JFrame {
                 buscarClienteActionPerformed(evt);
             }
         });
-        jPanel2.add(buscarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, -1, 50));
+        jPanel2.add(buscarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 260, 50));
 
         nombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jPanel2.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 200, 40));
+        jPanel2.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 200, 40));
 
         apellido.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jPanel2.add(apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 200, 40));
+        jPanel2.add(apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, 200, 40));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Nombre del Cliente");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 200, 30));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 200, 30));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Apellido del Cliente");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 200, 30));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 200, 30));
 
         jScrollPane1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
@@ -134,15 +134,15 @@ public class Ventana1 extends javax.swing.JFrame {
                 buscarReservacionActionPerformed(evt);
             }
         });
-        jPanel3.add(buscarReservacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 260, 50));
+        jPanel3.add(buscarReservacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 260, 50));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Cédula de Identidad");
-        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 200, 30));
+        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 200, 30));
 
         cedula.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jPanel3.add(cedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 200, 40));
+        jPanel3.add(cedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 200, 40));
 
         datosReservacion.setEditable(false);
         datosReservacion.setColumns(20);
@@ -164,15 +164,15 @@ public class Ventana1 extends javax.swing.JFrame {
                 mostrarClientesActionPerformed(evt);
             }
         });
-        jPanel4.add(mostrarClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 230, 50));
+        jPanel4.add(mostrarClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 260, 50));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Número de Habitación");
-        jPanel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 200, 30));
+        jPanel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 200, 30));
 
         numeroHabitacion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jPanel4.add(numeroHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 200, 40));
+        jPanel4.add(numeroHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 200, 40));
 
         datosClientesHistoricos.setEditable(false);
         datosClientesHistoricos.setColumns(20);
@@ -187,12 +187,12 @@ public class Ventana1 extends javax.swing.JFrame {
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         cedulaReservacion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jPanel5.add(cedulaReservacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 200, 40));
+        jPanel5.add(cedulaReservacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 200, 40));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Cédula de Identidad");
-        jPanel5.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 200, 30));
+        jPanel5.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 200, 30));
 
         checkIn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         checkIn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ventanas/icons8-check-in-48.png"))); // NOI18N
@@ -202,7 +202,7 @@ public class Ventana1 extends javax.swing.JFrame {
                 checkInActionPerformed(evt);
             }
         });
-        jPanel5.add(checkIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 250, 50));
+        jPanel5.add(checkIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 260, 50));
 
         datosCheckIn.setEditable(false);
         datosCheckIn.setColumns(20);
@@ -219,18 +219,18 @@ public class Ventana1 extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Nombre del Cliente");
-        jPanel6.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 200, 30));
+        jPanel6.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 200, 30));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Apellido del Cliente");
-        jPanel6.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 200, 30));
+        jPanel6.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 200, 30));
 
         apellidoCheck.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jPanel6.add(apellidoCheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 200, 40));
+        jPanel6.add(apellidoCheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, 200, 40));
 
         nombreCheck.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jPanel6.add(nombreCheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 200, 40));
+        jPanel6.add(nombreCheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 200, 40));
 
         CheckOut.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         CheckOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ventanas/icons8-check-out-48.png"))); // NOI18N
@@ -240,7 +240,7 @@ public class Ventana1 extends javax.swing.JFrame {
                 CheckOutActionPerformed(evt);
             }
         });
-        jPanel6.add(CheckOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 260, 50));
+        jPanel6.add(CheckOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 260, 50));
 
         datosCheckOut.setEditable(false);
         datosCheckOut.setColumns(20);
