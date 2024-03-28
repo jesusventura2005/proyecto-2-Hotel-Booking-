@@ -87,13 +87,14 @@ public class Ventana1 extends javax.swing.JFrame {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         buscarCliente.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        buscarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ventanas/icons8-search-50.png"))); // NOI18N
         buscarCliente.setText("Buscar Cliente");
         buscarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buscarClienteActionPerformed(evt);
             }
         });
-        jPanel2.add(buscarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 200, 50));
+        jPanel2.add(buscarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, -1, 50));
 
         nombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jPanel2.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 200, 40));
@@ -126,13 +127,14 @@ public class Ventana1 extends javax.swing.JFrame {
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         buscarReservacion.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        buscarReservacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ventanas/icons8-search-50.png"))); // NOI18N
         buscarReservacion.setText("Buscar Reservación");
         buscarReservacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buscarReservacionActionPerformed(evt);
             }
         });
-        jPanel3.add(buscarReservacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 200, 50));
+        jPanel3.add(buscarReservacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 260, 50));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -155,13 +157,14 @@ public class Ventana1 extends javax.swing.JFrame {
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         mostrarClientes.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        mostrarClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ventanas/icons8-visible-50.png"))); // NOI18N
         mostrarClientes.setText("Mostrar Clientes");
         mostrarClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mostrarClientesActionPerformed(evt);
             }
         });
-        jPanel4.add(mostrarClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 200, 50));
+        jPanel4.add(mostrarClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 230, 50));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -192,13 +195,14 @@ public class Ventana1 extends javax.swing.JFrame {
         jPanel5.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 200, 30));
 
         checkIn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        checkIn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ventanas/icons8-check-in-48.png"))); // NOI18N
         checkIn.setText("Realizar Check-In");
         checkIn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 checkInActionPerformed(evt);
             }
         });
-        jPanel5.add(checkIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 200, 50));
+        jPanel5.add(checkIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 250, 50));
 
         datosCheckIn.setEditable(false);
         datosCheckIn.setColumns(20);
@@ -229,13 +233,14 @@ public class Ventana1 extends javax.swing.JFrame {
         jPanel6.add(nombreCheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 200, 40));
 
         CheckOut.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        CheckOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ventanas/icons8-check-out-48.png"))); // NOI18N
         CheckOut.setText("Realizar Check-Out");
         CheckOut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CheckOutActionPerformed(evt);
             }
         });
-        jPanel6.add(CheckOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 200, 50));
+        jPanel6.add(CheckOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 260, 50));
 
         datosCheckOut.setEditable(false);
         datosCheckOut.setColumns(20);
